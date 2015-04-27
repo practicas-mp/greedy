@@ -1,2 +1,6 @@
 bin/
 *.pyc
+*.pdf
+*.aux
+*.log
+*.toc

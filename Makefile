@@ -5,10 +5,18 @@ INCLUDE = ./include
 OBJ = ./obj
 BIN = ./bin
 DOC = ./doc
-ALGS = max_containers
+ALGS = max_containers max_value_greedy
 
 $(ALGS): %: $(SRC)/%.cpp $(INCLUDE)/container.h
 	$(CC) $(CPPFLAGS) $(SRC)/$@.cpp -o $(BIN)/$@
+
+pdf: build/memoir.pdf
+
+build/memoir.pdf: 
+	pdflatex memoir.tex 
+	mkdir -p build
+	mv memoir.pdf build/memoir.pdf
+
 
 clean:
 	rm -f $(OBJ)/*

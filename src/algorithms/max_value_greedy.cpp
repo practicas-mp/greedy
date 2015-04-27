@@ -4,8 +4,9 @@
 
 using namespace std;
 
-bool value_over_weight_order(Container a, Container b){
-    return a.value / a.weight < b.value / b.weight;
+// The first option to take will be the one with bigger 'value density'
+bool value_over_weight_order(Container a, Container b){ 
+    return (1.0 * a.value) / a.weight > (1.0 * b.value) / b.weight; // Cast to float
 }
 
 vector<Container> getContainersToLoad(vector<Container> containers, int max_total_weight){
