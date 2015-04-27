@@ -7,12 +7,8 @@ BIN = ./bin
 DOC = ./doc
 ALGS = max_containers
 
-
-
 $(ALGS): %: $(SRC)/%.cpp $(INCLUDE)/container.h
 	$(CC) $(CPPFLAGS) $(SRC)/$@.cpp -o $(BIN)/$@
-
-
 
 clean:
 	rm -f $(OBJ)/*

@@ -20,7 +20,7 @@ vector<Container> getContainersToLoad(vector<Container> containers, int max_tota
 			total_current_weight += container.weight;
 			result.push_back(container);
 		} else {
-			return result;
+			break;
 		}
 	}
 
