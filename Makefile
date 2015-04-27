@@ -12,7 +12,7 @@ $(ALGS): %: $(SRC)/%.cpp $(INCLUDE)/container.h
 
 pdf: build/memoir.pdf
 
-build/memoir.pdf: 
+build/memoir.pdf: memoir.tex
 	pdflatex memoir.tex 
 	mkdir -p build
 	mv memoir.pdf build/memoir.pdf

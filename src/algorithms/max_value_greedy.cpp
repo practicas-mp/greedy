@@ -21,7 +21,7 @@ vector<Container> getContainersToLoad(vector<Container> containers, int max_tota
             total_current_weight += container.weight;
             result.push_back(container);
         } else {
-            break;
+            // Puede que aun queden containers pequeños que quepan (aunque tengan poco valor)
         }
     }
 

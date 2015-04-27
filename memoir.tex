@@ -36,6 +36,8 @@
 \documentclass[a4paper, 11pt]{article}
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{mathpazo}
+\usepackage{amsthm}
+
 
 % Indentación de párrafos para Palatino
 \setlength{\parindent}{0pt}
@@ -127,6 +129,37 @@ Problema de los contenedors} % Subtitle
 %%% Inicio del documento
 
 \section{Introducción}
+El objetivo de esta práctica es que utilicemos un enfoque \textit{greedy} para resolver un problema planteado.La técnica \textit{greedy} de diseño de algoritmos consiste en tomar en cada paso de resolución de un problema la mejor solución local. Es fácil encontrar ejemplos de problemas en los que un algoritmo \textit{voraz} no encuentra la solución óptima al problema, por lo que parte de la práctica consistirá también es averiguar si el algoritmo greedy diseñado resuelve el problema de forma óptima.
+
+\section{Problema}
+Nuestro problema es el siguiente:
+\begin{quote}
+Se tiene un buque mercante cuya capacidad de carga es de $K$ toneladas y un conjunto de
+contenedores $c_1, . . . , c_n$ cuyos pesos respectivos son $p_1, . . . , p_n$ (expresados también en toneladas) y para los que se obtiene un beneficio al ser transportados de $b_1, . . . , b_n$ euros, respectivamente.
+
+Teniendo en cuenta que la capacidad del buque es menor que la suma total de los pesos de los
+contenedores:
+\begin{enumerate}
+\item Diseñe un algoritmo que maximice el número de contenedores cargados, y demuestre su
+optimalidad.
+\item Diseñe un algoritmo que intente maximizar el beneficio obtenido.
+\end{enumerate}
+\end{quote}
+
+\section{Solución}
+\subsection{Primer algoritmo}
+El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menso pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
+\begin{proof}
+Demostración aquí
+\end{proof}
+
+\subsection{Segundo algoritmo}
+El segundo algoritmo tiene que tratar de maximizar el beneficio. Lo primero que se puede pensar sería coger en cada momento el contenedor que más valor aporte. Sin embargo, esto puede dar lugar a problemas ¿qué ocurre si hay un contenedor que vale un poco más que otro, pero que pesa siete veces más? El algoritmo \textit{naive} cogería el contenedor siete veces más pesado, dejando menos hueco para los siguientes contenedores. Parece que esta heurística no es del todo satisfactoria.
+
+Para resolver este problema, podemos asociar una nueva variable al contenedor que llamaremos \textit{densidad de valor}. El cubo i-ésimo tendrá una densidad de valor $D_i = b_i/p_i$. Así, un contenedor que tenga una densidad de valor muy alta será un contenedor que tenga mucho valor y pese poco.
+
+Por tanto, los dos algoritmos que probaremos para maximizar el valor serán los de elegir el contenedor con más valor y el de elegir el contenedor con mayor densidad de valor. Veremos, sin embargo, que ninguno de los dos encuentra la solución óptima.
+
 
 
 \end{document}
