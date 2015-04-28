@@ -5,7 +5,9 @@ INCLUDE = ./include
 OBJ = ./obj
 BIN = ./bin
 DOC = ./doc
-ALGS = max_containers max_value_greedy
+ALGS = max_containers max_value max_value_density
+
+all: $(ALGS)
 
 $(ALGS): %: $(SRC)/%.cpp $(INCLUDE)/container.h
 	$(CC) $(CPPFLAGS) $(SRC)/$@.cpp -o $(BIN)/$@

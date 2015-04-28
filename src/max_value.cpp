@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "container.h"
-#include "algorithms/max_value_greedy.cpp"
+#include "algorithms/max_value.cpp"
 
 using namespace std;
 

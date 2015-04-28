@@ -37,6 +37,8 @@
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{mathpazo}
 \usepackage{amsthm}
+\usepackage{eurosym}
+
 
 
 % Indentación de párrafos para Palatino
@@ -150,7 +152,7 @@ optimalidad.
 \subsection{Primer algoritmo}
 El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menso pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
 \begin{proof}
-Demostración aquí
+
 \end{proof}
 
 \subsection{Segundo algoritmo}
@@ -158,7 +160,18 @@ El segundo algoritmo tiene que tratar de maximizar el beneficio. Lo primero que 
 
 Para resolver este problema, podemos asociar una nueva variable al contenedor que llamaremos \textit{densidad de valor}. El cubo i-ésimo tendrá una densidad de valor $D_i = b_i/p_i$. Así, un contenedor que tenga una densidad de valor muy alta será un contenedor que tenga mucho valor y pese poco.
 
-Por tanto, los dos algoritmos que probaremos para maximizar el valor serán los de elegir el contenedor con más valor y el de elegir el contenedor con mayor densidad de valor. Veremos, sin embargo, que ninguno de los dos encuentra la solución óptima.
+En cualquier caso, \textbf{ninguno de los dos algoritmos es óptimo}.
+
+\begin{proof}
+Veamos que el primer algoritmo no es óptimo. Consideremos una lista de tres contenedores en la que hay un contenedor que pesa 10 toneladas y tiene como valor 10M\euro, los otros dos contenedores tienen peso de 5 toneladas y un valor de 9M\euro. Usar el primer algoritmo para un barco que soporte 10 toneladas nos devolvería que 10M\euro es el beneficio máximo que se puede obtener, mientras que se pueden conseguir 18M\euro cargando los dos contenedores con menor valor.
+
+Veamos que el segundo algoritmo tampoco es óptimo. Consideremos una lista con dos contenedores en la que hay un contenedor que pesa 1kg con valor equivalente a 3M\euro y otro contenedor que pesa 10 toneladas y tiene un valor equivalente a 4M\euro. En un barco de 10 toneladas, el segundo algoritmo cargaría antes el paquete de 1kg, ya que tiene una gran densidad de valor. Debido a que no quedaría hueco para el segundo contenedor, el beneficio óptimo según este algoritmo sería 3M\euro, cuando en realidad sería 4M\euro de haberse cargado el otro contenedor.
+
+\end{proof}
+
+Por tanto, los dos algoritmos que probaremos para maximizar el valor serán los de elegir el contenedor con más valor y el de elegir el contenedor con mayor densidad de valor. Comprobaremos cuál de los dos obtiene mejores resultados en cuanto a beneficios.
+
+
 
 
 
