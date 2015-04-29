@@ -94,7 +94,7 @@
 
 %% Título
 \title{\textbf{Algoritmos voraces (greedy)}\\ % Title
-Problema de los contenedors} % Subtitle
+Problema de los contenedores} % Subtitle
 
 \author{\textsc{Ignacio Mas Mesa,\\Braulio Valdivielso Martínez} % Author
 \\{\textit{Universidad de Granada}}} % Institution
@@ -123,9 +123,8 @@ Problema de los contenedors} % Subtitle
 
 
 %% Índice
-{\parskip=2pt
   \tableofcontents
-}
+
 \pagebreak
 
 %%% Inicio del documento
@@ -149,13 +148,13 @@ optimalidad.
 \end{quote}
 
 \section{Solución}
-\subsection{Primer algoritmo}
+\subsection{Maximizar el número de contenedores}
 El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menso pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
 \begin{proof}
 
 \end{proof}
 
-\subsection{Segundo algoritmo}
+\subsection{Maximizar el beneficio}
 El segundo algoritmo tiene que tratar de maximizar el beneficio. Lo primero que se puede pensar sería coger en cada momento el contenedor que más valor aporte. Sin embargo, esto puede dar lugar a problemas ¿qué ocurre si hay un contenedor que vale un poco más que otro, pero que pesa siete veces más? El algoritmo \textit{naive} cogería el contenedor siete veces más pesado, dejando menos hueco para los siguientes contenedores. Parece que esta heurística no es del todo satisfactoria.
 
 Para resolver este problema, podemos asociar una nueva variable al contenedor que llamaremos \textit{densidad de valor}. El cubo i-ésimo tendrá una densidad de valor $D_i = b_i/p_i$. Así, un contenedor que tenga una densidad de valor muy alta será un contenedor que tenga mucho valor y pese poco.
@@ -165,14 +164,17 @@ En cualquier caso, \textbf{ninguno de los dos algoritmos es óptimo}.
 \begin{proof}
 Veamos que el primer algoritmo no es óptimo. Consideremos una lista de tres contenedores en la que hay un contenedor que pesa 10 toneladas y tiene como valor 10M\euro, los otros dos contenedores tienen peso de 5 toneladas y un valor de 9M\euro. Usar el primer algoritmo para un barco que soporte 10 toneladas nos devolvería que 10M\euro es el beneficio máximo que se puede obtener, mientras que se pueden conseguir 18M\euro cargando los dos contenedores con menor valor.
 
-Veamos que el segundo algoritmo tampoco es óptimo. Consideremos una lista con dos contenedores en la que hay un contenedor que pesa 1kg con valor equivalente a 3M\euro y otro contenedor que pesa 10 toneladas y tiene un valor equivalente a 4M\euro. En un barco de 10 toneladas, el segundo algoritmo cargaría antes el paquete de 1kg, ya que tiene una gran densidad de valor. Debido a que no quedaría hueco para el segundo contenedor, el beneficio óptimo según este algoritmo sería 3M\euro, cuando en realidad sería 4M\euro de haberse cargado el otro contenedor.
+Veamos que el segundo algoritmo tampoco es óptimo. Consideremos una lista con dos contenedores en la que hay un contenedor que pesa 1kg con valor equivalente a 3M\euro  y otro contenedor que pesa 10 toneladas y tiene un valor equivalente a 4M\euro. En un barco de 10 toneladas, el segundo algoritmo cargaría antes el paquete de 1kg, ya que tiene una gran densidad de valor. Debido a que no quedaría hueco para el segundo contenedor, el beneficio óptimo según este algoritmo sería 3M\euro, cuando en realidad sería 4M\euro de haberse cargado el otro contenedor.
 
 \end{proof}
 
 Por tanto, los dos algoritmos que probaremos para maximizar el valor serán los de elegir el contenedor con más valor y el de elegir el contenedor con mayor densidad de valor. Comprobaremos cuál de los dos obtiene mejores resultados en cuanto a beneficios.
 
+\section{Apéndice: Solución óptima}
+Tal y como lo hicimos en la práctica anterior, nos interesamos por encontrar la solución óptima al problema de maximizar el beneficio total que cargar en el barco, ya que como demostramos, la solución greedy tiene algunos problemas.
 
+Tras nuestras investigaciones, pudimos encontrar que este problema es un problema conocido en la literatura como ``\textit{el problema de la mochila}''. La solución óptima de este programa pasa por usar una técnica de diseño de algoritmos llamada \textit{programación dinámica}, que veremos próximamente.
 
-
+Utilizamos el lenguaje de programación python para realizar la implementación del algoritmo más cómoda y rápidamente.	
 
 \end{document}

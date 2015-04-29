@@ -9,7 +9,7 @@ bool value_order(Container a, Container b){
     return a.value > b.value;
 }
 
-vector<Container> getContainersToLoad(vector<Container> containers, int max_total_weight){
+vector<Container> getMaxValueContainersToLoad(vector<Container> containers, int max_total_weight){
     std::sort(containers.begin(), containers.end(), value_order);
 
     int total_current_weight = 0;

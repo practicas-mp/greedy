@@ -23,7 +23,7 @@ int main(int argc, char **argv){
 	if (containers_data_file.good()) {
 		containers_data_file >> containers;
 
-		vector<Container> result = getContainersToLoad(containers, max_weight);
+		vector<Container> result = getMaxContainersToLoad(containers, max_weight);
 
 		for(Container container: result){
 			cout << container << endl;

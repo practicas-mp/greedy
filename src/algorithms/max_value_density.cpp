@@ -9,7 +9,7 @@ bool value_density_order(Container a, Container b){
     return (1.0 * a.value) / a.weight > (1.0 * b.value) / b.weight; // Cast to float
 }
 
-vector<Container> getContainersToLoad(vector<Container> containers, int max_total_weight){
+vector<Container> getMaxValueDensityContainersToLoad(vector<Container> containers, int max_total_weight){
     std::sort(containers.begin(), containers.end(), value_density_order);
 
     int total_current_weight = 0;
