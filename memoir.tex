@@ -151,7 +151,7 @@ optimalidad.
 \subsection{Maximizar el número de contenedores}
 El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menso pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
 \begin{proof}
-
+Supongamos que $c_1, ..., c_n$ son los contenedores ordenados por peso de menor a mayor, y que la solución óptima viene dada por $ c_{\sigma(n)} $ para $ n \in \{1, ..., k \} $, con $k$ tal que ya no caben más contenedores en el barco. Supongamos que dado $m \in \{1, ..., k\}$,  $c_m \not\in \{\sigma(1), ..., \sigma(k)\} $, pero entonces existe $ s \in \{\sigma(1), ... \sigma(k)\} $ con $ s > k $. Si sustituimos en la colección $c_s$ por $c_m$ tenemos una colección de contenedores que pesa menos que la original, ya que $peso(c_m) < peso(c_s)$ debido a que $m < s$ y los contenedores estaban ordenados por orden de peso. Por este motivo $\{1,...,k\} = \{\sigma(1), ..., \sigma(k)\}$ y entonces no existe combinación de $k$ contenedores que pese menos que aquella en la que los $k$ contenedores son los que menos pesan.
 \end{proof}
 
 \subsection{Maximizar el beneficio}
