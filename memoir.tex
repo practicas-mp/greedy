@@ -130,7 +130,7 @@ Problema de los contenedores} % Subtitle
 %%% Inicio del documento
 
 \section{Introducción}
-El objetivo de esta práctica es que utilicemos un enfoque \textit{greedy} para resolver un problema planteado.La técnica \textit{greedy} de diseño de algoritmos consiste en tomar en cada paso de resolución de un problema la mejor solución local. Es fácil encontrar ejemplos de problemas en los que un algoritmo \textit{voraz} no encuentra la solución óptima al problema, por lo que parte de la práctica consistirá también es averiguar si el algoritmo greedy diseñado resuelve el problema de forma óptima.
+El objetivo de esta práctica es que utilicemos un enfoque \textit{greedy} para resolver un problema planteado. La técnica \textit{greedy} de diseño de algoritmos consiste en tomar en cada paso de resolución de un problema la mejor solución local. Es fácil encontrar ejemplos de problemas en los que un algoritmo \textit{voraz} no encuentra la solución óptima al problema, por lo que parte de la práctica consistirá también es averiguar si el algoritmo greedy diseñado resuelve el problema de forma óptima.
 
 \section{Problema}
 Nuestro problema es el siguiente:
@@ -149,9 +149,9 @@ optimalidad.
 
 \section{Solución}
 \subsection{Maximizar el número de contenedores}
-El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menso pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
+El primer algoritmo es trivial. Debido a que tenemos que cargar el máximo número de contenedores posible, lo que haremos será coger los contenedores que menos pesen. Este es un algoritmo greedy ya que en cada momento, cogeremos el contenedor que menos pese de los que quedan por coger. La demostración de la optimalidad de este algoritmo es sencilla:
 \begin{proof}
-Supongamos que $c_1, ..., c_n$ son los contenedores ordenados por peso de menor a mayor, y que la solución óptima viene dada por $ c_{\sigma(n)} $ para $ n \in \{1, ..., k \} $, con $k$ tal que ya no caben más contenedores en el barco. Supongamos que dado $m \in \{1, ..., k\}$,  $c_m \not\in \{\sigma(1), ..., \sigma(k)\} $, pero entonces existe $ s \in \{\sigma(1), ... \sigma(k)\} $ con $ s > k $. Si sustituimos en la colección $c_s$ por $c_m$ tenemos una colección de contenedores que pesa menos que la original, ya que $peso(c_m) < peso(c_s)$ debido a que $m < s$ y los contenedores estaban ordenados por orden de peso. Por este motivo $\{1,...,k\} = \{\sigma(1), ..., \sigma(k)\}$ y entonces no existe combinación de $k$ contenedores que pese menos que aquella en la que los $k$ contenedores son los que menos pesan.
+Supongamos que $c_1, ..., c_n$ son los contenedores ordenados por peso de menor a mayor, y que la solución óptima viene dada por $ \{c_{\sigma(n)} : n \in \{1, ..., k \} \} $, con $k$ tal que ya no caben más contenedores en el barco. Supongamos que dado $m \in \{1, ..., k\}$,  $c_m \not\in \{c_{\sigma(1)}, ..., c_{\sigma(k)}\} $, pero entonces existe $ s \in \{\sigma(1), ... \sigma(k)\} $ con $ s > k $. Si sustituimos en la colección $c_s$ por $c_m$ tenemos una colección de contenedores que pesa menos que la original, ya que $peso(c_m) < peso(c_s)$ debido a que $m < s$ y los contenedores estaban ordenados por orden de peso. Por este motivo $\{1,...,k\} = \{\sigma(1), ..., \sigma(k)\}$ y entonces no existe combinación de $k$ contenedores que pese menos que aquella en la que los $k$ contenedores son los que menos pesan.
 \end{proof}
 
 \subsection{Maximizar el beneficio}
@@ -162,19 +162,39 @@ Para resolver este problema, podemos asociar una nueva variable al contenedor qu
 En cualquier caso, \textbf{ninguno de los dos algoritmos es óptimo}.
 
 \begin{proof}
-Veamos que el primer algoritmo no es óptimo. Consideremos una lista de tres contenedores en la que hay un contenedor que pesa 10 toneladas y tiene como valor 10M\euro, los otros dos contenedores tienen peso de 5 toneladas y un valor de 9M\euro. Usar el primer algoritmo para un barco que soporte 10 toneladas nos devolvería que 10M\euro es el beneficio máximo que se puede obtener, mientras que se pueden conseguir 18M\euro cargando los dos contenedores con menor valor.
+Veamos que el primer algoritmo no es óptimo. Consideremos una lista de tres contenedores en la que hay un contenedor que pesa 10 toneladas y tiene como valor 10M\euro, los otros dos contenedores tienen peso de 5 toneladas y un valor de 9M\euro. Usando el primer algoritmo para un barco que soporte 10 toneladas obtendríamos que 10M\euro  es el beneficio máximo que se puede obtener, mientras que se pueden conseguir 18M\euro  cargando los dos contenedores con menor valor.
 
-Veamos que el segundo algoritmo tampoco es óptimo. Consideremos una lista con dos contenedores en la que hay un contenedor que pesa 1kg con valor equivalente a 3M\euro  y otro contenedor que pesa 10 toneladas y tiene un valor equivalente a 4M\euro. En un barco de 10 toneladas, el segundo algoritmo cargaría antes el paquete de 1kg, ya que tiene una gran densidad de valor. Debido a que no quedaría hueco para el segundo contenedor, el beneficio óptimo según este algoritmo sería 3M\euro, cuando en realidad sería 4M\euro de haberse cargado el otro contenedor.
+Veamos que el segundo algoritmo tampoco es óptimo. Consideremos una lista con dos contenedores en la que hay un contenedor que pesa 1kg con valor equivalente a 3M\euro  y otro contenedor que pesa 10 toneladas y tiene un valor equivalente a 4M\euro. En un barco de 10 toneladas, el segundo algoritmo cargaría antes el paquete de 1kg, ya que tiene una gran densidad de valor. Debido a que no quedaría hueco para el segundo contenedor, el beneficio óptimo según este algoritmo sería 3M\euro, cuando en realidad sería 4M\euro  de haberse cargado el otro contenedor.
 
 \end{proof}
 
 Por tanto, los dos algoritmos que probaremos para maximizar el valor serán los de elegir el contenedor con más valor y el de elegir el contenedor con mayor densidad de valor. Comprobaremos cuál de los dos obtiene mejores resultados en cuanto a beneficios.
+
+\subsection{Comparación de los algoritmos}
+
+Ya hemos visto que ninguna de las dos `versiones' del algoritmo es óptima. Sin embargo, cabe preguntarse cuál de las dos es mejor en términos generales. Hacer un estudio teórico de esto resulta complejo y necesita conocimientos y tiempo de los que no disponemos, así que parece que lo más práctico es simular la ejecución gran cantidad de casos y comprobar cuál de las dos variantes resulta vencedora en cada uno y obtener un subtotal. De esta forma, aunque no podemos asegurar que ninguno de los dos sea mejor que el otro, sí que nos da una idea aproximada de cómo se comportan en la mayoría de casos.
+
+El set de pruebas seleccionado son diez contenedores con pesos y valores aleatorios entre 0 y 50, y barcos con capacidad 100. Tras 10000 ejecuciones, los resultados obtenidos son similares a estos:
+
+\texttt{
+Total cases with winner: 2469\\*
+Max value wins:          748\\*
+Max value density wins: 1721
+}
+
+Por lo que podemos ver, con estas condiciones sólo en el 25\% de los casos uno de los algoritmos resulta mejor que el otro, y en esos casos el de la densidad suele ganar el doble de veces aproximadamente. Para poder obtener resultados más firmes habría que repetir estas simulaciones variando el número de contenedores generados o la capacidad del barco, pero todo parece indicar que estos parámetro influirán poco a la hora de determinar el \textit{ganador}.
+
+Concluimos, entonces, que, en general, la aproximación que usa la densidad del contenedor es mejor que la que maximiza directamente el valor del contenedor.
 
 \section{Apéndice: Solución óptima}
 Tal y como lo hicimos en la práctica anterior, nos interesamos por encontrar la solución óptima al problema de maximizar el beneficio total que cargar en el barco, ya que como demostramos, la solución greedy tiene algunos problemas.
 
 Tras nuestras investigaciones, pudimos encontrar que este problema es un problema conocido en la literatura como ``\textit{el problema de la mochila}''. La solución óptima de este programa pasa por usar una técnica de diseño de algoritmos llamada \textit{programación dinámica}, que veremos próximamente.
 
-Utilizamos el lenguaje de programación python para realizar la implementación del algoritmo más cómoda y rápidamente.	
+Utilizamos el lenguaje de programación Python para realizar la implementación del algoritmo más cómoda y rápidamente.
+
+La idea tras este algoritmo es ir calculando, paso a paso, la mejor solución al problema. Para ello construye las soluciones parciales tomando como mucho los $i$ primeros objetos (contenedores en este caso) cuyo peso total sea menor o igual que $w$. Al ir a tomar un nuevo objeto, se comprueba si se puede y, en tal caso, si es mejor cogerlo o no ayudándose de soluciones parciales calculadas anteriormente. Finalmente, la solución del problema es la que usa hasta $n$ objetos con peso máximo $W$, donde $n$ y $W$ son las condiciones que nos dan.
+
+Si bien es cierto que este algoritmo no es tan rápido como las aproximaciones que hemos visto hasta ahora (en caso contrario no tendría sentido usar aproximaciones), su tiempo de ejecución es pseudo-polinómico (i.e., polinómico en $n$, pero exponencial en el número de bits de $n$), por lo que es una alternativa a tener en cuenta.
 
 \end{document}
