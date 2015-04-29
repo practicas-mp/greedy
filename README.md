@@ -15,4 +15,4 @@ Debemos resolver el siguiente problema
 * ````samples/*````: pequeños sets de datos construidos para corroborar el buen funcionamiento de los algoritmos.
 
 ### Véase
-*[Knapsack Problem](http://en.wikipedia.org/wiki/Knapsack_problem)
+* [Knapsack Problem](http://en.wikipedia.org/wiki/Knapsack_problem)
