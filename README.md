@@ -1,6 +1,6 @@
 Prácticas algoritmos greedy
 ============================
-![Maerks](http://www2.emersonprocess.com/SiteCollectionImages/News%20Images/maersk.jpg "Maersk")
+![Maerks](http://noticiaslogisticaytransporte.com/wp-content/uploads/2014/09/Maersk-nombra-nuevos-cargos-en-Tailandia-y-Myanmar-.jpg "Maersk")
 ### Problema
 Debemos resolver el siguiente problema
 > Se tiene un buque mercante cuya capacidad de carga es de ````K```` toneladas y un conjunto de contenedores ````c[1], ... , c[n]```` cuyos pesos respectivos son ````p[1], ... , p[n]```` (expresados también en toneladas) y para los que se obtiene un beneficio al ser transportados de ````b[1], ... , b[n]```` euros, respectivamente.
