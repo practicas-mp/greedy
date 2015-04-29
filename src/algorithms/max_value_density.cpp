@@ -6,7 +6,14 @@ using namespace std;
 
 // The first option to take will be the one with bigger 'value density'
 bool value_density_order(Container a, Container b){ 
-    return (1.0 * a.value) / a.weight > (1.0 * b.value) / b.weight; // Cast to float
+    double a_ratio = (1.0 * a.value) / a.weight,  // Cast to float
+            b_ratio = (1.0 * b.value) / b.weight;
+
+    if(a_ratio == b_ratio){  // In case of same ratio, pick the heavier one
+        return a.weight >= b.weight;
+    } else {
+        return a_ratio > b_ratio;
+    }
 }
 
 vector<Container> getMaxValueDensityContainersToLoad(vector<Container> containers, int max_total_weight){
